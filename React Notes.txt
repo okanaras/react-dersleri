@@ -1,0 +1,22 @@
+React Notes
+
+1- PROJE OLUSTURMA VE AYAGA KALDIRMA
+- En guncel sekliyle bir react projesi su an 'vite' ile acilmaktadir.
+    Bunun icin proje yolundayken 'npm create vite@latest -y' ile olusturuyoruz.
+    Daha sonra proje ismini yaziyoruz, framework sorusunda olarak React'i (kutuphane) ve dil olarak ise su an icin 'javascript' i seciyoruz.
+    Daha sonra cd ile proje adina girip, npm install ve npm run dev komutlarini calistiriyoruz.
+
+2- Syntax 
+- Component icerisinde javascript kodlari return keyword'unden once yazilir, return () icerisine yalnizca html kodlari ve oncesinde tanimlanan js 
+    degiskenleri jsx seklinde {} yani icerisinde yazilir.
+- Component'ler function ile tanimlaniyor.
+- Olusturulan companent en asagida export default companentAdi seklinde export edilmesi gerek.
+- 'ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)' ornek id si root olan elementi burada render ile App companent'i calistirilmis.
+
+3- Ozellik
+- Donerken value,key de ilgili elemente 'key={}' ile deger ver.
+- Style vermek icin style={{ color:white, border:none, }}, seklinde verilir ilk suslu jsx in, 2. suslu ise style vermek icin style lar virgul ile coglatilabilinir. 
