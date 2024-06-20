@@ -20,3 +20,13 @@ React Notes
 3- Ozellik
 - Donerken value,key de ilgili elemente 'key={}' ile deger ver.
 - Style vermek icin style={{ color:white, border:none, }}, seklinde verilir ilk suslu jsx in, 2. suslu ise style vermek icin style lar virgul ile coglatilabilinir. 
+- Component'lerde return ile geriye donerken ust kapsayici veya Fragment '<></>' olmak zorunda.
+- export default companentAdi ile companent'i oldugu gibi export edebilirz, sadece export ile belirli bir kismini export edebilirz. SAdexe export ile doneceksek eger fonksiyonun disinda yapilmasi gereklidir.
+- sadece export ile disari cikarilan lar importta {exportEdilenDegisken} seklinde cagrilir.
+  import 'IstenilenAD' from './Login' -> export default ile
+  import { exportEdilenAd } from './Login' -> sadece export ile
+- JS ile JSX arasindaki fark : jsx-> js ve html kullanmak icin kullanilir. JSX'te return (
+        <div>Hello</div>
+    ) dondugumuzu, js te return (
+  React.createElement("div", null, "Hello World") seklinde yazmamiz gerek. Kisaca jsx companent'te return ile direkt html yazmamizi saglar
+)
