@@ -56,3 +56,13 @@ React Notes
 - Calistirilma sekli : hemen cback func "onClick={() => { setFirstName("Ali") }}" veya oncesinde bi fonk yazip calistirma "onClick={changeName}"
 - State in durumu degiskenden sonraki fonksiyonda degistiginde o component tekrar render edilir. const [count, setCount] = useState(0); -> setCount kullanildiginda.
 - State in degeri degistiginde tekrardan calistirilmasi uygulamayi yavaslatir.
+
+7- useEffect : hooks
+- Sayfa yuklendiginde veya bir state in degeri degistiginde calisir.
+- "import { useEffect, useState } from 'react'" seklinde import edilmesi gerekir.
+- useEffect(callback, calismaSekli(array[]))
+-  useEffect(() => {
+    console.log("Ilk kez render edildiginde calisir");
+  }, []); // burada ", []" verilmezse her zaman calisir, sadece ", []" verilirse sayfa yuklendiignde 1 defaya mahsus calisir, ", [firstName, lastName]" gibi yukarda tanimlanan state varsa eger o state teki degisiklik gerceklestiginde sadece calisir.
+
+
