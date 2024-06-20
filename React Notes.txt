@@ -30,3 +30,23 @@ React Notes
     ) dondugumuzu, js te return (
   React.createElement("div", null, "Hello World") seklinde yazmamiz gerek. Kisaca jsx companent'te return ile direkt html yazmamizi saglar
 )
+
+4- Props(property) : Componentler arasi veri tasima islemidir. Componentin cagirildigi yerde custom property name verilip componentin olujstugu yerde 3 fartkli yol ile alinabilinir.
+    -- <Product productName="Ayakkabi" price={3200} /> seklinde prop lar tanimlanir
+    -1- function Product(props) {
+    console.log(props); // {"productName": "Ayakkabi","price": 3200}
+    ...
+    } : burada fonks adindan sonra parametre ile bir degisken atayip o degisken uzerinden . ile altindaki property lere erisilebilinir. (<div>Isim: {prop.productName}</div>)
+
+    -2- Destructing ile alinabilinir.
+    const { productName, price } = props;
+    <div>Isim: {productName}</div>
+
+    -3- En sik kullanilan destructing i direkt fonksiyonun parametresinde tanimlama
+    NOT : Destructing de {} icerisindeki parametre ile objedeki ayni olmak zorunda.
+
+- main.jsx teki React.StrictMode kaldirinca coklu loglamayi kaldirabiliriz
+
+5- Component icerisinde companent tanimlama
+- <Container> <Product /> </Container> // Container companenti parametresinde props olarak children geliyor. Destructing ile Container({ children }) seklinde karsiliyoruz ve yazdirmak istedigimiz yerde {children} ile basiyoruz.
+
