@@ -50,3 +50,9 @@ React Notes
 5- Component icerisinde companent tanimlama
 - <Container> <Product /> </Container> // Container companenti parametresinde props olarak children geliyor. Destructing ile Container({ children }) seklinde karsiliyoruz ve yazdirmak istedigimiz yerde {children} ile basiyoruz.
 
+6- useState:hooks
+- php deki public string $name; dedigimiz degiskenlerdir React karsiligi useState hooks tur. Ilk basta "import { useState } from 'react'" seklinde import edilmesi gereklidir.
+- Tanimlama sekli : const [degiskenAdi, fonkAdi] = useState('string' || [arr] || {obj} || boolean || '');
+- Calistirilma sekli : hemen cback func "onClick={() => { setFirstName("Ali") }}" veya oncesinde bi fonk yazip calistirma "onClick={changeName}"
+- State in durumu degiskenden sonraki fonksiyonda degistiginde o component tekrar render edilir. const [count, setCount] = useState(0); -> setCount kullanildiginda.
+- State in degeri degistiginde tekrardan calistirilmasi uygulamayi yavaslatir.
