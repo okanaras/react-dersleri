@@ -69,3 +69,37 @@ React Notes
 
 9- attributelere verilen deger sayi veya degisken ise attAdi acildiktan sonra suslu icerisine tirnaksiz yazilmasi gerek.
 
+10- json server ile db'den cekilen fake data olusturma : json serve kurulum
+
+11- fetch veya axios isteklerinde then li bolumler kullanilmayacksa eger async await kullanilmalidir.
+
+12- axios get istegi
+async & await li kullanim:
+  const getUserById = async (userID) => {
+    const response = await axios.get(`${BASE_URL}/users/${userID}`);
+    console.log(response.data);
+  };
+
+then ve catch li kullanim
+  const getUserById = (userID) => {
+    axios.get(`${BASE_URL}/users/${userID}`)
+      .then((response) => {
+        console.log(response.data);
+      }).catch((error) => {
+        console.log("Hata: ", error);
+      });
+  };
+
+13- axios post istegi icin fonk olusturuup useEffect ile cagirdim ve icerisine newUser'i atadim.
+  const createUser = async (newUser) => {
+    const donenCevap = await axios.post(`${BASE_URL}/users`, newUser);
+    console.log('donenCevap : ', donenCevap.data);
+  };
+
+   useEffect(() => {
+    const newUser = {
+      "username": "Axios Post Istegi",
+      "password": "axios"
+    };
+    createUser(newUser);
+  }, []);

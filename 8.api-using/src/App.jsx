@@ -10,11 +10,6 @@ function App() {
     console.log(response.data);
   };
 
-  const getUserById = async (userID) => {
-    const response = await axios.get(`${BASE_URL}/users/${userID}`);
-    console.log(response.data);
-  };
-
   // const getUserById = (userID) => {
   //   axios.get(`${BASE_URL}/users/${userID}`)
   //     .then((response) => {
@@ -24,10 +19,25 @@ function App() {
   //     });
   // };
 
+  const getUserById = async (userID) => {
+    const response = await axios.get(`${BASE_URL}/users/${userID}`);
+    console.log(response.data);
+  };
+
+  const createUser = async (newUser) => {
+    const donenCevap = await axios.post(`${BASE_URL}/users`, newUser);
+    console.log('donenCevap : ', donenCevap.data);
+  };
 
   useEffect(() => {
     // getAllUsers();
-    getUserById(2);
+    // getUserById(2);
+
+    const newUser = {
+      "username": "Axios Post Istegi",
+      "password": "axios"
+    };
+    createUser(newUser);
   }, []);
 
   return (
