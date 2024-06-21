@@ -73,7 +73,7 @@ React Notes
 
 11- fetch veya axios isteklerinde then li bolumler kullanilmayacksa eger async await kullanilmalidir.
 
-12- axios get istegi
+12- axios get (listeleme) istegi
 async & await li kullanim:
   const getUserById = async (userID) => {
     const response = await axios.get(`${BASE_URL}/users/${userID}`);
@@ -90,16 +90,34 @@ then ve catch li kullanim
       });
   };
 
-13- axios post istegi icin fonk olusturuup useEffect ile cagirdim ve icerisine newUser'i atadim.
+13- axios post (ekleme) istegi icin fonk olusturup useEffect ile cagirdim ve icerisine newUser'i atadim.
+  // fonk atama
   const createUser = async (newUser) => {
     const donenCevap = await axios.post(`${BASE_URL}/users`, newUser);
     console.log('donenCevap : ', donenCevap.data);
   };
 
+  //fonk cagirma
    useEffect(() => {
     const newUser = {
       "username": "Axios Post Istegi",
       "password": "axios"
     };
     createUser(newUser);
+  }, []);
+
+  14- axios put (guncelleme) istegi icin fonk olusturup guncellenecek ID yi ve yeni degerleri parametresinde tanimladim. Daha sonra cagirdim.
+
+    // fonks atama
+    const updateUser = async (userId, updatedUser) => {
+    const response = await axios.put(`${BASE_URL}/users/${userId}`, updatedUser);
+    console.log(response.data);
+  };
+
+  //fonk cagirma 2 numara id'li kullanici yi yeni bilgilerle degiskene atamadan set ettim.
+   useEffect(() => {
+    updateUser(2, {
+      "username": "serkan",
+      "password": "aras"
+    });
   }, []);
