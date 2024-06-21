@@ -3,12 +3,14 @@
     {
       "id": "1",
       "username": "okan25",
-      "password": "123"
+      "password": "123",
+      "postId": "7"
     },
     {
-      "id": "bd69",
-      "username": "Axios Post Istegi",
-      "password": "axios"
+      "id": "2",
+      "username": "ali12",
+      "password": "pass",
+      "postId": "5"
     }
   ]
 }

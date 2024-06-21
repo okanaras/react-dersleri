@@ -40,6 +40,28 @@ function App() {
     console.log(response.data);
   };
 
+  // Asenkron Problem Ornegi start
+
+  const getUser = async (userId) => {
+    const response = await axios.get(`${BASE_URL}/users/${userId}`);
+    return response.data.postId;
+  };
+
+  const getPostById = async (postId) => {
+    const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/${postId}`);
+
+    return response.data;
+  };
+
+  const getPost = async () => {
+    const postId = await getUser(1);
+    const postData = await getPostById(postId);
+    console.log(postData);
+  };
+
+  // Asenkron Problem Ornegi end
+
+
   useEffect(() => {
     // getAllUsers();
     // getUserById(2);
@@ -55,7 +77,12 @@ function App() {
     //   "password": "aras"
     // });
 
-    deleteUserById(2);
+    // deleteUserById(2);
+
+    // Asenkron Problem Ornegi start
+    getPost();
+    // Asenkron Problem Ornegi end
+
 
   }, []);
 
