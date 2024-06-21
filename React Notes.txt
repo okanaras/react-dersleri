@@ -65,4 +65,7 @@ React Notes
     console.log("Ilk kez render edildiginde calisir");
   }, []); // burada ", []" verilmezse her zaman calisir, sadece ", []" verilirse sayfa yuklendiignde 1 defaya mahsus calisir, ", [firstName, lastName]" gibi yukarda tanimlanan state varsa eger o state teki degisiklik gerceklestiginde sadece calisir.
 
+8- className : daha oncesinde style'i "style={{ backgroundColor:white, borderRadius:5px, }}" seklinde vermistik, class'lari ise 'clasname="classadi"' seklinde verebiliriz.
+
+9- attributelere verilen deger sayi veya degisken ise attAdi acildiktan sonra suslu icerisine tirnaksiz yazilmasi gerek.
 
