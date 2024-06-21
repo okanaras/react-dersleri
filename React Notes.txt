@@ -107,7 +107,6 @@ then ve catch li kullanim
   }, []);
 
   14- axios put (guncelleme) istegi icin fonk olusturup guncellenecek ID yi ve yeni degerleri parametresinde tanimladim. Daha sonra cagirdim.
-
     // fonks atama
     const updateUser = async (userId, updatedUser) => {
     const response = await axios.put(`${BASE_URL}/users/${userId}`, updatedUser);
@@ -120,4 +119,16 @@ then ve catch li kullanim
       "username": "serkan",
       "password": "aras"
     });
+  }, []);
+
+  15- axios delete (silme) istegi icin fonk olusturup fonk parametresinde silinencek userin id sini tanimladim.
+  // fonks atama
+  const deleteUserById = async (userId) => {
+    const response = await axios.delete(`${BASE_URL}/users/${userId}`);
+    console.log(response.data);
+  };
+
+  //fonk cagirma 2 numara id'li kullanici yi yeni bilgilerle degiskene atamadan set ettim.
+   useEffect(() => {
+    deleteUserById(2);
   }, []);
