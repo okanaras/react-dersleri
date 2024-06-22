@@ -4,6 +4,10 @@ import '../App.css';
 function TodoCreate({ onCreateTodo }) {
     const [newTodo, setNewTodo] = useState('');
 
+    const clearInput = () => {
+        setNewTodo('');
+    };
+
     const createTodo = () => {
         if (!newTodo) return;
 
@@ -13,6 +17,7 @@ function TodoCreate({ onCreateTodo }) {
         };
 
         onCreateTodo(request);
+        clearInput();
     };
 
     return (

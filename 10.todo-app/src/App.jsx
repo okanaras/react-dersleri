@@ -15,7 +15,7 @@ function App() {
     <div className='App'>
       <div className='main'>
         <TodoCreate onCreateTodo={createTodo} />
-        <TodoList />
+        <TodoList todos={todos} />
       </div>
     </div>
   )
