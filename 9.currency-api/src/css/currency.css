@@ -1,0 +1,98 @@
+.currency-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 50px;
+  width: 500px;
+  height: 250px;
+  border: 1px solid #000;
+}
+
+.title-div {
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.currency-inputs {
+  margin-top: 25px;
+}
+
+.amount,
+.result {
+  width: 90px;
+  height: 27px;
+  margin-right: 10px;
+  text-align: center;
+}
+.from-currency-option,
+.to-currency-option {
+  width: 90px;
+  height: 30px;
+  margin-right: 10px;
+  position: relative;
+}
+
+.arrow-icon {
+  font-size: 25px;
+  margin-right: 10px;
+}
+
+.exchange-button {
+  width: 90px;
+  height: 30px;
+  border: 1px solid #fff;
+  background-color: #4d4b4b;
+  color: #fff;
+  border-radius: 5px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+  position: relative;
+}
+
+.exchange-button:hover {
+  background-color: #fff;
+  color: #4d4b4b;
+  border: 1px solid #4d4b4b;
+  transition: transform 1s ease;
+  transform: scale(1.1);
+}
+
+.exchange-button:disabled,
+.from-currency-option:disabled,
+.to-currency-option:disabled {
+  cursor: not-allowed;
+  background-color: #ccc;
+  border: 1px solid #ccc;
+  transform: none;
+}
+
+.exchange-button:disabled:hover,
+.from-currency-option:disabled:hover,
+.to-currency-option:disabled:hover {
+  background-color: #ccc;
+  color: #fff;
+  border: 1px solid #ccc;
+  transform: none;
+}
+
+.exchange-button:disabled:hover::after {
+  content: "Amount alanını doldurmanız gerekir!";
+  position: absolute;
+  top: 30px;
+  right: 50%;
+  transform: translateX(50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 10;
+}
