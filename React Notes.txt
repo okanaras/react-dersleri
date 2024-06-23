@@ -132,3 +132,12 @@ then ve catch li kullanim
    useEffect(() => {
     deleteUserById(2);
   }, []);
+
+  16- Redux Toolkit : 
+  - kutuphane'lerini import ediyoruz.
+  - store(slice'lari depolayan yer) tanimliyoruz : configureStore fonksiyonundaki reducer'a key,val seklinde olusturulan slice'i atiyoruz
+  - main.jsx te provider ile sarip propsa store u veriyoruz.
+  - ortak tutulan degisken ve funcs lar slice larda tutulur.
+  - slice'lari store ile baglamak icinde yukarda da anlatildigi gibi reducer'a key, value seklinde atanilmasi gerek
+  - daha sonra App.jsx te useSelector ile state'lere, useDispatch ile fonksiyonlara erisilinir.
+  
