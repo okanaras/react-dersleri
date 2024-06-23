@@ -9,6 +9,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import Header from './components/Header';
 import EmployeeAbout from './pages/EmployeeAbout';
 import CompanyAbout from './pages/CompanyAbout';
+import ProductDetails from './pages/ProductDetails';
 
 // Routes Route
 
@@ -27,6 +28,7 @@ function App() {
         </Route>
 
         <Route path='/product' element={<Product />} />
+        <Route path='/product-details/:id' element={<ProductDetails />} />
         <Route path='/contact' element={<Contact />} />
         {/* eger ki route hicbirisiyle eslesmezse bu component cagrilacak */}
         <Route path='*' element={<NotFoundPage />} />

@@ -186,6 +186,9 @@ then ve catch li kullanim
 
     export default Header
 
+
+
+
     - Ic ice linkler /about/employee || /about/company
     - Child sayfasini almak icin Parent ta "<Outlet />" componenti tanimlanmasi gerek
       return (
@@ -206,3 +209,14 @@ then ve catch li kullanim
 
     
 
+    - useNavigate() : bir seye tiklanildiginda onu herhangi bir path e yonlendirdigimiz hook tur.
+      import { useNavigate } from 'react-router-dom';
+
+      const navigate = useNavigate();
+      <button onClick={() => navigate(`/product-details/${id}`)}>DETAYI GOR</button>
+      <Route path='/product-details/:id' element={<ProductDetails />} />
+      /product-details/:id -> buradaki :id dinamik yer tutucu degisken. ProductDetails componentine gitti. Asagida companentte useParams ile degeri aldik
+
+    - useParams() : parametre ile gelenleri karsilar.
+        const params = useParams();
+        console.log(params);
