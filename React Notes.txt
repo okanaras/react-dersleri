@@ -141,3 +141,49 @@ then ve catch li kullanim
   - slice'lari store ile baglamak icinde yukarda da anlatildigi gibi reducer'a key, value seklinde atanilmasi gerek
   - daha sonra App.jsx te useSelector ile state'lere, useDispatch ile fonksiyonlara erisilinir.
   
+
+  17- React Router-Dom
+    - npm i react-router-dom ile indiriyoruz
+    - main.jsx teki app BrowserRoute ile saririyoruz.
+      import { BrowserRouter } from 'react-router-dom';
+
+      ReactDOM.createRoot(document.getElementById('root')).render(
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>,
+      ) 
+
+    - routing yapilan yerde kutuphaneleri import ediyoruz.
+     "import { Routes, Route } from 'react-router-dom';"
+
+     -Routes icerisine Route tanimliyoruz ve 2 adet props aliyor path ve element
+     function App() {
+
+        return (
+          <>
+            <Routes>
+              {/* 2 tane props alir path ve element */}
+              <Route path='/' element={<Home />} />
+            </Routes>
+          </>
+        )
+      }
+
+    - Route yonlendirmesi icin Link kullaniyoruz ve to="path"
+    import React from 'react'
+    import { Link } from 'react-router-dom'
+
+    function Header() {
+        return (
+            <div>
+                <Link to="/">Anasayfa</Link>
+                <Link to="/about">Hakkimizda</Link>
+                <Link to="/product">Urunler</Link>
+                <Link to="/contact">Iletisim</Link>
+            </div>
+        )
+    }
+
+    export default Header
+    
+
