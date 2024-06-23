@@ -1,10 +1,15 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Product({ product }) {
     const { id, name, price } = product;
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const currentPath = location.pathname;
+    const isDetailPage = currentPath === `/product-details/${id}`;
+    // const isDetailPage = currentPath.includes("product-details");
 
     return (
         <div style={{ marginBottom: '40px', backgroundColor: 'lightseagreen' }}>
@@ -12,7 +17,9 @@ function Product({ product }) {
             <h3>ISIM : {name}</h3>
             <h3>FIYAT : {price}</h3>
 
-            <button onClick={() => navigate(`/product-details/${id}`)}>DETAYI GOR</button>
+            {isDetailPage ? <button onClick={() => navigate(`/product`)}>GERI DON</button> :
+                <button onClick={() => navigate(`/product-details/${id}`)}>DETAYI GOR</button>
+            }
         </div>
     )
 }
