@@ -185,5 +185,24 @@ then ve catch li kullanim
     }
 
     export default Header
+
+    - Ic ice linkler /about/employee || /about/company
+    - Child sayfasini almak icin Parent ta "<Outlet />" componenti tanimlanmasi gerek
+      return (
+        <div>
+            <h1>About</h1>
+            <Link className='link' to="employee">Calisanlar Hk</Link>
+            <Link className='link' to="company">Sirketler Hk</Link>
+
+            <Outlet />
+        </div>
+      )
+
+    - Child routelarin path i ve to suna "/" eklenmez
+      <Route path='/about' element={<About />}>
+          <Route path='employee' element={<EmployeeAbout />} />
+          <Route path='company' element={<CompanyAbout />} />
+      </Route>
+
     
 

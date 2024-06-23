@@ -7,6 +7,8 @@ import Product from './pages/Product';
 import Contact from './pages/Contact';
 import NotFoundPage from './pages/NotFoundPage';
 import Header from './components/Header';
+import EmployeeAbout from './pages/EmployeeAbout';
+import CompanyAbout from './pages/CompanyAbout';
 
 // Routes Route
 
@@ -18,7 +20,12 @@ function App() {
       <Routes>
         {/* 2 tane props alir path ve element */}
         <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
+
+        <Route path='/about' element={<About />}>
+          <Route path='employee' element={<EmployeeAbout />} />
+          <Route path='company' element={<CompanyAbout />} />
+        </Route>
+
         <Route path='/product' element={<Product />} />
         <Route path='/contact' element={<Contact />} />
         {/* eger ki route hicbirisiyle eslesmezse bu component cagrilacak */}
