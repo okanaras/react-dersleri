@@ -262,4 +262,60 @@ then ve catch li kullanim
       export default App
     `
 
-19-    
+19- Formik Yup validation icin kullanilir.
+  2 paket kurulumu gerceklestirilir ve formik ile inputlar birbirne baglanilir.
+  Schemas klasoru olusturup hata mesajlarini kurallari orada tanimliyoruz. 
+  Ornek: RegisterForm componenti icin: Burada useFormik hooksu ile obj destructing ile almak istedigimiz verileri cekiyoruz. form input valuelarina initialValues taki degerleri atiyoruz.
+  Hata olmasi durumunda ise errors ile basiyoruz. Errors lar schemas tan gelmektedir. Ornek schemas asagida mevcut 
+      import { useFormik } from 'formik';
+      import { registerFormSchemas } from '../src/schemas/RegisterFormSchemas';
+
+      function RegisterForm() {
+
+          const submit = (values, actions) => {
+              setTimeout(() => actions.resetForm(), 2000);
+          };
+
+          const { values, errors, handleChange, handleSubmit } = useFormik({
+              initialValues: {
+                  email: '',
+                  age: '',
+                  password: '',
+                  confirmPassword: '',
+                  term: '',
+              },
+              validationSchema: registerFormSchemas,
+              onSubmit: submit
+          });
+
+
+          return (
+              <div>
+                  <form onSubmit={handleSubmit}>
+                      <div className='input-div'>
+                          <label>Email</label>
+                          <input type='text' id='email' placeholder='Email Giriniz' value={values.email} onChange={handleChange} />
+                          {errors.email && <p className='input-error'>{errors.email}</p>}
+                      </div>
+                      <div className='input-div'>
+                          <label>Yas</label>
+                          <input type='number' min={1} id='age' placeholder='Yas Giriniz' value={values.age} onChange={handleChange} />
+                          {errors.age && <p className='input-error'>{errors.age}</p>}
+                      </div>
+                  </form>
+              </div>
+          )
+      }
+
+      export default RegisterForm
+
+      Schemas :
+      import * as yup from 'yup';
+
+      export const registerFormSchemas = yup.object().shape({
+          email: yup.string().email("Gecerli email adresi giriniz.").required("Email alani zorunludur"),
+          age: yup.number().positive("Pozitif bir deger giriniz.").integer("Tam Sayi giriniz").required("Yas alani zorunludur"),
+          password: yup.string().required("Sifre alani zorunludur"),
+          confirmPassword: yup.string().required("Sifre tekrari zorunludur").oneOf([yup.ref('password', yup.password)], 'Sifre tekrari ayni olmalidir.'),
+          term: yup.boolean().required("Sozlesme alani zorunludur"),
+      });
