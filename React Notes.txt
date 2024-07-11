@@ -106,9 +106,9 @@ then ve catch li kullanim
     createUser(newUser);
   }, []);
 
-  14- axios put (guncelleme) istegi icin fonk olusturup guncellenecek ID yi ve yeni degerleri parametresinde tanimladim. Daha sonra cagirdim.
-    // fonks atama
-    const updateUser = async (userId, updatedUser) => {
+14- axios put (guncelleme) istegi icin fonk olusturup guncellenecek ID yi ve yeni degerleri parametresinde tanimladim. Daha sonra cagirdim.
+  // fonks atama
+  const updateUser = async (userId, updatedUser) => {
     const response = await axios.put(`${BASE_URL}/users/${userId}`, updatedUser);
     console.log(response.data);
   };
@@ -121,7 +121,7 @@ then ve catch li kullanim
     });
   }, []);
 
-  15- axios delete (silme) istegi icin fonk olusturup fonk parametresinde silinencek userin id sini tanimladim.
+15- axios delete (silme) istegi icin fonk olusturup fonk parametresinde silinencek userin id sini tanimladim.
   // fonks atama
   const deleteUserById = async (userId) => {
     const response = await axios.delete(`${BASE_URL}/users/${userId}`);
@@ -133,7 +133,7 @@ then ve catch li kullanim
     deleteUserById(2);
   }, []);
 
-  16- Redux Toolkit : 
+16- Redux Toolkit : 
   - kutuphane'lerini import ediyoruz.
   - store(slice'lari depolayan yer) tanimliyoruz : configureStore fonksiyonundaki reducer'a key,val seklinde olusturulan slice'i atiyoruz
   - main.jsx te provider ile sarip propsa store u veriyoruz.
@@ -142,81 +142,124 @@ then ve catch li kullanim
   - daha sonra App.jsx te useSelector ile state'lere, useDispatch ile fonksiyonlara erisilinir.
   
 
-  17- React Router-Dom
-    - npm i react-router-dom ile indiriyoruz
-    - main.jsx teki app BrowserRoute ile saririyoruz.
-      import { BrowserRouter } from 'react-router-dom';
+17- React Router-Dom
+  - npm i react-router-dom ile indiriyoruz
+  - main.jsx teki app BrowserRoute ile saririyoruz.
+    import { BrowserRouter } from 'react-router-dom';
 
-      ReactDOM.createRoot(document.getElementById('root')).render(
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>,
-      ) 
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>,
+    ) 
 
-    - routing yapilan yerde kutuphaneleri import ediyoruz.
-     "import { Routes, Route } from 'react-router-dom';"
+  - routing yapilan yerde kutuphaneleri import ediyoruz.
+    "import { Routes, Route } from 'react-router-dom';"
 
-     -Routes icerisine Route tanimliyoruz ve 2 adet props aliyor path ve element
-     function App() {
+    -Routes icerisine Route tanimliyoruz ve 2 adet props aliyor path ve element
+    function App() {
+
+      return (
+        <>
+          <Routes>
+            {/* 2 tane props alir path ve element */}
+            <Route path='/' element={<Home />} />
+          </Routes>
+        </>
+      )
+    }
+
+  - Route yonlendirmesi icin Link kullaniyoruz ve to="path"
+  import React from 'react'
+  import { Link } from 'react-router-dom'
+
+  function Header() {
+      return (
+          <div>
+              <Link to="/">Anasayfa</Link>
+              <Link to="/about">Hakkimizda</Link>
+              <Link to="/product">Urunler</Link>
+              <Link to="/contact">Iletisim</Link>
+          </div>
+      )
+  }
+
+  export default Header
+
+
+
+
+  - Ic ice linkler /about/employee || /about/company
+  - Child sayfasini almak icin Parent ta "<Outlet />" componenti tanimlanmasi gerek
+    return (
+      <div>
+          <h1>About</h1>
+          <Link className='link' to="employee">Calisanlar Hk</Link>
+          <Link className='link' to="company">Sirketler Hk</Link>
+
+          <Outlet />
+      </div>
+    )
+
+  - Child routelarin path i ve to suna "/" eklenmez
+    <Route path='/about' element={<About />}>
+        <Route path='employee' element={<EmployeeAbout />} />
+        <Route path='company' element={<CompanyAbout />} />
+    </Route>
+
+  
+
+  - useNavigate() : bir seye tiklanildiginda onu herhangi bir path e yonlendirdigimiz hook tur.
+    import { useNavigate } from 'react-router-dom';
+
+    const navigate = useNavigate();
+    <button onClick={() => navigate(`/product-details/${id}`)}>DETAYI GOR</button>
+    <Route path='/product-details/:id' element={<ProductDetails />} />
+    /product-details/:id -> buradaki :id dinamik yer tutucu degisken. ProductDetails componentine gitti. Asagida companentte useParams ile degeri aldik
+
+  - useParams() : parametre ile gelenleri karsilar.
+      const params = useParams();
+      console.log(params);
+
+18- Custom Hooks : use ile baslatilmasi gerekir. Bir kere yaz her yerden kullan
+  Or: hooks/useCounter.jsx isimli component daha sonra rfce ile componenti olustur. Buraya fonksiyonlar, degiskenleri vs obje seklinde geri dondur.
+      Kullanilan yerde object destructing ile yakala:
+    `
+      import { useState } from 'react'
+
+      function useCounter() {
+          const [count, setCount] = useState(0);
+
+          const increase = () => {
+              setCount(count + 1);
+          };
+
+          const decrease = () => {
+              count > 0 ? setCount(count - 1) : null;
+          };
+
+          return { count, increase, decrease }
+      }
+
+      export default useCounter
+    `
+    `
+      import useCounter from '../hooks/useCounter'
+      import './App.css'
+
+      function App() {
+        const { count, increase, decrease } = useCounter();
 
         return (
           <>
-            <Routes>
-              {/* 2 tane props alir path ve element */}
-              <Route path='/' element={<Home />} />
-            </Routes>
+            <div>{count}</div>
+            <button onClick={decrease}>Azalt</button>
+            <button onClick={increase}>Arttir</button>
           </>
         )
       }
 
-    - Route yonlendirmesi icin Link kullaniyoruz ve to="path"
-    import React from 'react'
-    import { Link } from 'react-router-dom'
+      export default App
+    `
 
-    function Header() {
-        return (
-            <div>
-                <Link to="/">Anasayfa</Link>
-                <Link to="/about">Hakkimizda</Link>
-                <Link to="/product">Urunler</Link>
-                <Link to="/contact">Iletisim</Link>
-            </div>
-        )
-    }
-
-    export default Header
-
-
-
-
-    - Ic ice linkler /about/employee || /about/company
-    - Child sayfasini almak icin Parent ta "<Outlet />" componenti tanimlanmasi gerek
-      return (
-        <div>
-            <h1>About</h1>
-            <Link className='link' to="employee">Calisanlar Hk</Link>
-            <Link className='link' to="company">Sirketler Hk</Link>
-
-            <Outlet />
-        </div>
-      )
-
-    - Child routelarin path i ve to suna "/" eklenmez
-      <Route path='/about' element={<About />}>
-          <Route path='employee' element={<EmployeeAbout />} />
-          <Route path='company' element={<CompanyAbout />} />
-      </Route>
-
-    
-
-    - useNavigate() : bir seye tiklanildiginda onu herhangi bir path e yonlendirdigimiz hook tur.
-      import { useNavigate } from 'react-router-dom';
-
-      const navigate = useNavigate();
-      <button onClick={() => navigate(`/product-details/${id}`)}>DETAYI GOR</button>
-      <Route path='/product-details/:id' element={<ProductDetails />} />
-      /product-details/:id -> buradaki :id dinamik yer tutucu degisken. ProductDetails componentine gitti. Asagida companentte useParams ile degeri aldik
-
-    - useParams() : parametre ile gelenleri karsilar.
-        const params = useParams();
-        console.log(params);
+19-    
